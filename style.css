@@ -1,0 +1,56 @@
+body {
+  height: 100vh;
+  background: #fde2e4;
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  overflow: hidden;
+}
+
+button {
+  position: absolute;
+  padding: 15px 25px;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#trickButton {
+  background: #ff8fab;
+  color: white;
+}
+
+h1 {
+  color: darkred;
+  font-size: 42px;
+}
+
+p {
+  color: darkred;
+  font-size: 26px;
+}
+
+.hidden {
+  display: none;
+}
+
+.gifs img {
+  width: 120px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.buttons button {
+  position: static;
+  margin: 15px;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background: #adb5bd;
+  color: white;
+}
