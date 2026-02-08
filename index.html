@@ -117,7 +117,7 @@ button:hover {
   <div>
     <span class="ring" onclick="wrongRing()">💍</span>
     <span class="ring" onclick="wrongRing()">💍</span>
-    <span class="ring" onclick="rightRing()">💎</span>
+    <span class="ring" onclick="rightRing()">💍</span>
     <span class="ring" onclick="wrongRing()">💍</span>
   </div>
   <p id="ringMsg"></p>
@@ -148,10 +148,24 @@ button:hover {
   <p>I choose you. Always.</p>
 
   <!-- MUSIC BUTTON -->
-  <button onclick="playMusic()">Click when you’re ready 🎧</button>
+  <button id="musicBtn">Click when you’re ready 🎧</button>
 
-  <iframe id="music" width="0" height="0" allow="autoplay"></iframe>
-</div>
+<iframe
+  id="music"
+  width="1"
+  height="1"
+  style="opacity:0"
+  allow="autoplay; encrypted-media">
+</iframe>
+
+<script>
+document.getElementById("musicBtn").addEventListener("click", function () {
+  const iframe = document.getElementById("music");
+  iframe.src =
+    "https://www.youtube.com/embed/NDQzKbaR87E?autoplay=1&loop=1&playlist=NDQzKbaR87E";
+});
+</script>
+
 
 <script>
 function nextSlide(n) {
