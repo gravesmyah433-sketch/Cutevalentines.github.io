@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Forever Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  padding: 40px;
+  color: #fff;
+}
+
+.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.heart {
+  font-size: 120px;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Rings */
+.rings span {
+  font-size: 70px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+/* Balloon */
+.balloon {
+  font-size: 100px;
+  cursor: pointer;
+}
+
+/* Star */
+.star {
+  font-size: 80px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Jump scare */
+#jumpscare {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#jumpscare img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Floating kisses */
+.kiss {
+  position: absolute;
+  font-size: 30px;
+  animation: float 5s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Slide 1 -->
+<div class="slide active" id="slide1">
+  <h1>For My Forever Valentine 💗</h1>
+  <div class="heart" onclick="goTo('slide2')">❤️<br><small>Click Me</small></div>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="slide2">
+  <h2>Find the right ring 💍</h2>
+  <div class="rings">
+    <span onclick="wrongRing()">💍</span>
+    <span onclick="rightRing()">💍</span>
+    <span onclick="wrongRing()">💍</span>
+  </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="slide3">
+  <h2>Click me to pop 🎈</h2>
+  <div class="balloon" onclick="goTo('slide4')">🎈</div>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="slide4">
+  <h2>Open the note 💌</h2>
+  <button onclick="showChoices()">Open</button>
+  <div id="choices" style="display:none;">
+    <h3>Will you promise to be my forever Valentine?</h3>
+    <button onclick="goTo('slide5')">Yes 💖</button>
+    <button onclick="noChoice()">No 😈</button>
+  </div>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide" id="slide5">
+  <h2>Click me to my max size ⭐</h2>
+  <div class="star" id="star" onclick="growStar()">⭐</div>
+</div>
+
+<!-- Slide 6 -->
+<div class="slide" id="slide6">
+  <h2>A star for the star of my world ✨</h2>
+  <button style="background:red;color:white;" onclick="goTo('slide7')">Don’t Click</button>
+  <button onclick="goTo('slide8')">Click Me</button>
+</div>
+
+<!-- Slide 7 -->
+<div class="slide" id="slide7">
+  <h2>🙄🙄🙄</h2>
+  <p>Really baby… you’d be the first to die in a scary movie 😂</p>
+  <button onclick="goTo('slide6')">Go Back</button>
+</div>
+
+<!-- Slide 8 -->
+<div class="slide" id="slide8">
+  <h1>Happy Valentine’s Day 💘</h1>
+  <p style="max-width:700px;font-size:20px;">
+    You mean more to me than I could ever put into words.  
+    You’re my safe place, my happiness, my favorite person, and my forever.  
+    Every moment with you feels like home, and I’m so grateful I get to love you.  
+    I choose you today, tomorrow, and always. 💖
+  </p>
+</div>
+
+<!-- Jump scare -->
+<div id="jumpscare">
+  <img src="https://i.imgur.com/8ZQZQZQ.jpg">
+</div>
+
+<script>
+let starClicks = 0;
+
+function goTo(id) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function wrongRing() {
+  alert("Try again 👀");
+}
+
+function rightRing() {
+  goTo('slide3');
+}
+
+function showChoices() {
+  document.getElementById('choices').style.display = 'block';
+}
+
+function noChoice() {
+  const js = document.getElementById('jumpscare');
+  js.style.display = 'flex';
+  setTimeout(() => js.style.display = 'none', 1000);
+}
+
+function growStar() {
+  starClicks++;
+  document.getElementById('star').style.transform = `scale(${1 + starClicks * 0.2})`;
+  if (starClicks === 7) {
+    goTo('slide6');
+  }
+}
+
+/* Floating kisses */
+setInterval(() => {
+  const kiss = document.createElement('div');
+  kiss.className = 'kiss';
+  kiss.innerText = '💋';
+  kiss.style.left = Math.random() * 100 + 'vw';
+  document.body.appendChild(kiss);
+  setTimeout(() => kiss.remove(), 5000);
+}, 400);
+</script>
+
+</body>
+</html>
