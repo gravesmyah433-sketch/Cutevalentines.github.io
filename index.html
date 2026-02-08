@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💖 Valentine</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: pink;
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+section {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.active {
+  display: flex;
+}
+
+h1 {
+  color: darkred;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.gift {
+  font-size: 80px;
+  animation: float 2s infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+.heart {
+  font-size: 200px;
+  animation: zoom 2s forwards;
+}
+
+@keyframes zoom {
+  from { transform: scale(1); }
+  to { transform: scale(6); opacity: 0; }
+}
+
+input {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: red;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from { top: -10px; }
+  to { top: 100vh; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <h1>Open if you dare 💝</h1>
+  <div class="gift" onclick="goHeart()">🎁</div>
+</section>
+
+<!-- HEART FALL -->
+<section id="heart">
+  <div class="heart">❤️</div>
+</section>
+
+<!-- CODE -->
+<section id="code">
+  <h1>Crack the secret code 🔐</h1>
+  <p>Hint: It’s something romantic 💌</p>
+  <input id="answer" placeholder="Type here">
+  <button onclick="check()">Unlock</button>
+</section>
+
+<!-- FINAL -->
+<section id="final">
+  <h1 style="font-family: Pacifico; font-size: 40px;">
+    Will you be my forever Valentine? 💘
+  </h1>
+  <button onclick="yes()">Yes 💕</button>
+  <button onclick="yes()">No 😏</button>
+</section>
+
+<!-- CELEBRATION -->
+<section id="celebrate">
+  <h1>YAYYYY 💖💖💖</h1>
+  <p>I love you so much 💕</p>
+</section>
+
+<audio id="song" src="https://cdn.pixabay.com/download/audio/2023/03/28/audio_9cfc7b4a4b.mp3"></audio>
+
+<script>
+function show(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function goHeart() {
+  show("heart");
+  setTimeout(() => show("code"), 2000);
+}
+
+function check() {
+  let text = document.getElementById("answer").value.toLowerCase();
+  if (text.includes("forever valentine")) {
+    show("final");
+  } else {
+    alert("Almost… try again 💗");
+  }
+}
+
+function yes() {
+  show("celebrate");
+  document.getElementById("song").play();
+  for (let i = 0; i < 40; i++) {
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    document.body.appendChild(c);
+  }
+}
+</script>
+
+</body>
+</html>
